@@ -1,7 +1,17 @@
-import app from "./app.js";
+import express from 'express';
+import { pinoHttp } from 'pino-http';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
-const PORT = process.env.PORT || 3000;
+const app = express();
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.use(pinoHttp());
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors());
+
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
 });
+
+export { app };
