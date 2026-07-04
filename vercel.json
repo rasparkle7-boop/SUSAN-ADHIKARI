@@ -1,8 +1,11 @@
 {
-  "rewrites": [
+  "builds": [
     {
-      "source": "/(.*)",
-      "destination": "/api/index.js"
+      "src": "artifacts/api-server/index.js",
+      "use": "@vercel/node"
     }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "artifacts/api-server/index.js" }
   ]
 }
