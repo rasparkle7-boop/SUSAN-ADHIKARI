@@ -1,13 +1,13 @@
 {
   "functions": {
-    "dist/index.mjs": {
-      "runtime": "nodejs20.x"
+    "api/index.js": {
+      "memory": 1024
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "dist/index.mjs"
+      "source": "/(.*)",
+      "destination": "/api/index.js"
     }
   ]
 }
