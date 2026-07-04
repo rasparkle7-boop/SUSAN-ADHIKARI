@@ -1,18 +1,18 @@
-import express, { Request, Response, NextFunction } from 'express';
-import pinoHttp from 'pino-http';
+import express from 'express';
+import { pinoHttp } from 'pino-http';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 const app = express();
 
-// Use pino-http correctly as middleware
 app.use(pinoHttp());
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors());
 
-// Example route with proper TypeScript types
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
-  res.send('Hello World');
+// Basic health check
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
 });
 
-// Start the server (adjust port as needed)
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+export default app;
