@@ -1,18 +1,7 @@
-import express from 'express';
-import { pinoHttp } from 'pino-http';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
+import app from "./app.js";
 
-const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.use(pinoHttp());
-app.use(express.json());
-app.use(cookieParser());
-app.use(cors());
-
-// Basic health check
-app.get('/health', (req, res) => {
-  res.status(200).send('OK');
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
-
-export default app;
